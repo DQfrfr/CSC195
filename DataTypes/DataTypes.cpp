@@ -51,7 +51,6 @@ void getDailyHoursWorked(employee &emp) {
 	}
 }
 
-//TOOD: Implement more rigerous input validation
 void collectDetails(employee &emp) {
 	cout << "Enter employee's First name: ";
 	cin >> emp.name;
