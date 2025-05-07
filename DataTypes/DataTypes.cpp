@@ -82,8 +82,17 @@ void collectDetails(employee &emp) {
 		}
 	}
 
-	cout << "Enter employee's hourly wage: ";
-	cin >> emp.wage;
+	while (1) {
+		cout << "Enter employee's hourly wage: ";
+		cin >> emp.wage;
+		if (emp.wage < 0 || emp.wage > 24) {
+			cout << "Please enter a realistic value" << endl;
+			continue;
+		}
+		else {
+			break;
+		}
+	}
 
 	while (1) {
 		cout << "Enter number of days worked (Max 7) ";
