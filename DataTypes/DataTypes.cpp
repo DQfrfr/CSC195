@@ -18,7 +18,7 @@ struct employee {
 };
 
 // [0] = grossIncome, [1] = taxAmount, [2] = netIncome
-vector<float> calculatePayroll(employee& emp) {
+vector<float> calculatePayroll(employee emp) {
 	vector<float> payroll(3);
 	payroll[0] = emp.wage * emp.totalHours;
 	payroll[1] = payroll[0] * TAX;
@@ -53,23 +53,50 @@ void getDailyHoursWorked(employee &emp) {
 
 //TOOD: Implement more rigerous input validation
 void collectDetails(employee &emp) {
-	cout << "Enter employee name: ";
+	cout << "Enter employee's First name: ";
 	cin >> emp.name;
 
-	cout << "Enter employee initial: ";
+	cout << "Enter employee last initial: ";
 	cin >> emp.initial;
 
-	cout << "Enter employee age: ";
-	cin >> emp.age;
+	while (1) {
+		cout << "Enter employee age: ";
+		cin >> emp.age;
+		if (emp.age < 0) {
+			cout << "Please enter a positive value" << endl;
+			continue;
+		} 
+		else {
+			break;
+		}
+	}
 
-	cout << "Enter employee zipcode: ";
-	cin >> emp.zipcode;
+	while (1) {
+		cout << "Enter employee zipcode: ";
+		cin >> emp.zipcode;
+		if (emp.zipcode < 11111 || emp.zipcode > 99999) {
+			cout << "Invalid zipcode. Please enter a 5-digit number.\n";
+			continue;
+		}
+		else {
+			break;
+		}
+	}
 
 	cout << "Enter employee's hourly wage: ";
 	cin >> emp.wage;
 
-	cout << "Enter number of days worked (Max 7) ";
-	cin >> emp.daysWorked;
+	while (1) {
+		cout << "Enter number of days worked (Max 7) ";
+		cin >> emp.daysWorked;
+		if (emp.daysWorked < 1 || emp.daysWorked > 7) {
+			cout << "Please enter a number between 1 and 7.\n";
+			continue;
+		}
+		else {
+			break;
+		}
+	}
 
 	emp.isAdult = emp.age >= 18;
 }
