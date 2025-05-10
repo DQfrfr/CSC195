@@ -259,15 +259,15 @@ string PersonController::olderOrYounger(int i)
 {
 	if (people[i].getAge() > people[0].getAge())
 	{
-		return " is older than you.";
+		return " - Older than you.";
 	}
 	else if (people[i].getAge() < people[0].getAge())
 	{
-		return " is younger than you.";
+		return " - Younger than you.";
 	}
 	else
 	{
-		return " is the same age as you.";
+		return " - Same age as you.";
 	}
 	return "";
 }
