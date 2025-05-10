@@ -29,7 +29,7 @@ class PersonController
 
 	void createPerson(string firstname, string lastname, int age);
 
-    void addToArray(Person person);
+    void generateFate(Person &person);
 
     void printPeople();
 

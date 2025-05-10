@@ -30,6 +30,11 @@ void Person::setSuffix(Suffix suffix)
 	this->suffix = suffix;
 }
 
+void Person::setFate(string fate)
+{
+	this->fate = fate;
+}
+
 string Person::getFullName()
 {
 	return getPrefixString()  + firstName + " " + lastName + getSuffixString();
@@ -131,4 +136,9 @@ Person::Person(string firstname, string lastname, int age)
 string Person::toString()
 {
 	return getFullName() + " is " + to_string(age) + " years old";
+}
+
+string Person::getFate()
+{
+	return fate;
 }

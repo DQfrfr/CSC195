@@ -8,6 +8,7 @@ class Person
 {
 	string firstName;
 	string lastName;
+	string fate;
 	int age;
 	Prefix prefix;
 	Suffix suffix;
@@ -23,6 +24,8 @@ class Person
 	void setSuffix(Suffix suffix);
 
 public:
+	void setFate(string fate);
+
 	string getFullName();
 
 	string getFirstName();
@@ -44,4 +47,6 @@ public:
 	Person(string firstName, string lastName, int age);
 
 	string toString();
+
+	string getFate();
 };

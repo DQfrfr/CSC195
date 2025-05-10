@@ -2,12 +2,14 @@
 #include <string>
 #include <vector>
 #include "PersonController.h"
+#include <random>
 #include "Prefix.h"
 #include "Suffix.h"
 using namespace std;
 
 void PersonController::run()
 {
+	srand(time(0));
 	collectPersonInfo();
 
 	cout << "Hello " << people[0].getFullName() << "!" << endl;
@@ -225,22 +227,30 @@ Suffix PersonController::validateSuffix()
 
 void PersonController::createPerson(string firstname, string lastname, int age, Prefix prefix, Suffix suffix)
 {
-	people.push_back(Person(firstname, lastname, age, prefix, suffix));
+	Person person = Person(firstname, lastname, age, prefix, suffix);
+	generateFate(person);
+	people.push_back(person);
 }
 
 void PersonController::createPerson(string firstname, string lastname, int age, Prefix prefix)
 {
-	people.push_back(Person(firstname, lastname, age, prefix));
+	Person person = Person(firstname, lastname, age, prefix);
+	generateFate(person);
+	people.push_back(person);
 }
 
 void PersonController::createPerson(string firstname, string lastname, int age, Suffix suffix)
 {
-	people.push_back(Person(firstname, lastname, age, suffix));
+	Person person = Person(firstname, lastname, age, suffix);
+	generateFate(person);
+	people.push_back(person);
 }
 
 void PersonController::createPerson(string firstname, string lastname, int age)
 {
-	people.push_back(Person(firstname, lastname, age));
+	Person person = Person(firstname, lastname, age);
+	generateFate(person);
+	people.push_back(person);
 }
 
 void PersonController::printPeople()
@@ -253,6 +263,64 @@ void PersonController::printPeople()
 	{
 		cout << people[i].toString() << olderOrYounger(i) << endl;
 	}
+}
+
+void PersonController::generateFate(Person &person)
+{
+	int roll = rand() % 10;
+
+	if (roll > 3)
+	{
+		return;
+	}
+
+	std::vector<std::string> fates = {
+	"won the lottery and vanished to Fiji.",
+	"was last seen riding a bear into the sunset.",
+	"joined an underground ping-pong cult.",
+	"accidentally invented sentient bread.",
+	"is now the mayor of a town with 2 people.",
+	"got recruited by time travelers.",
+	"started a business selling air in jars.",
+	"faked their death and moved to Area 51.",
+	"became a motivational speaker for squirrels.",
+	"is currently lost in IKEA.",
+	"challenged a goose to a duel and lost.",
+	"was abducted by aliens but came back bilingual.",
+	"turned into a cloud. Nobody knows how.",
+	"became a professional kazoo player.",
+	"lives on a houseboat with 17 cats.",
+	"taught raccoons how to box.",
+	"is trapped inside a vending machine.",
+	"teleported into the backrooms.",
+	"now haunts a Waffle House.",
+	"became TikTok famous for doing taxes blindfolded.",
+	"found Atlantis but refuses to tell anyone.",
+	"married a ghost. Seems happy.",
+	"now pilots a mech suit in a secret government facility.",
+	"opened a restaurant that only serves toast.",
+	"was turned into an NPC in a mobile game.",
+	"won a staring contest with Medusa.",
+	"gave up everything to chase a butterfly.",
+	"became a werewolf accountant.",
+	"permanently fused with their Roomba.",
+	"is hiding in plain sight as a substitute teacher.",
+	"tried to hug a cactus to prove a point.",
+	"was reverse-adopted by a pack of wolves.",
+	"wrote a bestselling book using only emojis.",
+	"trained pigeons to deliver passive-aggressive notes.",
+	"can now talk to plants, but they only gossip.",
+	"accidentally became the leader of a robot uprising.",
+	"was cursed to always be mildly damp.",
+	"created a new language but forgot how it works.",
+	"invented teleportation but lost the return button.",
+	"tripped into a portal and is now a sidekick in a fantasy realm.",
+	"swapped places with their mirror reflection."
+	};
+
+	string fate = fates[rand() % fates.size()];
+	cout << "----- Random Event! -----" << endl;
+	cout << person.getFullName() << "'s fate is now: " << fate << endl;
 }
 
 string PersonController::olderOrYounger(int i)
