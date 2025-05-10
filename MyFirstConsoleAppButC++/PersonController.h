@@ -9,24 +9,25 @@ using namespace std;
 
 class PersonController
 {
-	string firstName;
-	string lastName;
-	int age;
-	Prefix prefix;
-	Suffix suffix;
 	vector<Person> people;
 
     void collectPersonInfo();
 
-    void validatePrefix();
+    Prefix validatePrefix();
 
-    void validateName();
+    vector<string> validateName();
 
-    void validateAge();
+    int validateAge();
 
-    void validateSuffix();
+    Suffix validateSuffix();
 
-    void createPerson();
+	void createPerson(string firstname, string lastname, int age, Prefix prefix, Suffix suffix);
+
+	void createPerson(string firstname, string lastname, int age, Prefix prefix);
+
+	void createPerson(string firstname, string lastname, int age, Suffix suffix);
+
+	void createPerson(string firstname, string lastname, int age);
 
     void addToArray(Person person);
 

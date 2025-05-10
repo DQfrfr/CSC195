@@ -9,9 +9,6 @@ using namespace std;
 void PersonController::run()
 {
 	collectPersonInfo();
-	createPerson();
-	Person temp = Person("John", "Doe", 30, Prefix::Mr, Suffix::NONE);
-	people.push_back(temp);
 
 	cout << "Hello " << people[0].getFullName() << "!" << endl;
 
@@ -26,8 +23,7 @@ void PersonController::run()
 		if (choice == "y" || choice == "Y")
 		{
 			collectPersonInfo();
-			createPerson();
-			cout << "Hello " << people[people.size() - 1].getFullName() << "!" << endl;
+			cout << people[people.size() - 1].getFullName() << " Was Added!" << endl;
 		}
 		else if (choice == "n" || choice == "N")
 		{
@@ -44,51 +40,234 @@ void PersonController::run()
 
 void PersonController::collectPersonInfo()
 {
-	cout << "Collect Person Info" << endl;
+	Prefix prefix = validatePrefix();
+	vector<string> name = validateName();
+	string firstName = name[0];
+	string lastName = name[1];
+	int age = validateAge();
+	Suffix suffix = validateSuffix();
+
+	// Do a check to see if the user entered a prefix or suffix
+	if (prefix == Prefix::NONE && suffix == Suffix::NONE)
+	{
+		createPerson(firstName, lastName, age);
+	}
+	else if (prefix != Prefix::NONE && suffix == Suffix::NONE)
+	{
+		createPerson(firstName, lastName, age, prefix);
+	}
+	else if (prefix == Prefix::NONE && suffix != Suffix::NONE)
+	{
+		createPerson(firstName, lastName, age, suffix);
+	}
+	else
+	{
+		createPerson(firstName, lastName, age, prefix, suffix);
+	}
 }
 
-void PersonController::validatePrefix()
+Prefix PersonController::validatePrefix()
 {
-	cout << "Validate Prefix" << endl;
+	string userInput = "";
+
+	while (true)
+	{
+		cout << "Please enter any prefixes if applicable (f to skip)" << endl;
+		cin >> userInput;
+
+		if (userInput == "f" || userInput == "F")
+		{
+			return Prefix::NONE;
+		}
+		else if (userInput == "Mr" || userInput == "Mr.")
+		{
+			return Prefix::Mr;
+			
+		}
+		else if (userInput == "Mrs" || userInput == "Mrs.")
+		{
+			return Prefix::Mrs;
+		}
+		else if (userInput == "Ms" || userInput == "Ms.")
+		{
+			return Prefix::Ms;
+		}
+		else if (userInput == "Dr" || userInput == "Dr.")
+		{
+			return Prefix::Dr;
+		}
+		else if (userInput == "Prof" || userInput == "Prof.")
+		{
+			return Prefix::Prof;
+		}
+		else
+		{
+			cout << "Invalid prefix. Please try again." << endl;
+		}
+	}
 }
 
-void PersonController::validateName()
+//vector[0] = firstName, vector[1] = lastName
+vector<string> PersonController::validateName()
 {
-	cout << "Validate Name" << endl;
+	vector<string> name;
+	string firstName = "";
+	string lastName = "";
+
+	while (true)
+	{
+		cout << "Please enter your first name: ";
+		cin >> firstName;
+		if (firstName.length() < 2)
+		{
+			cout << "First name must be at least 2 characters long." << endl;
+			continue;
+		}
+		name.push_back(firstName);
+		break;
+	}
+
+	while (true)
+	{
+		cout << "Please Enter your last name: ";
+		cin >> lastName;
+		if (lastName.length() < 2)
+		{
+			cout << "Last name must be at least 2 characters long." << endl;
+			continue;
+		}
+		name.push_back(lastName);
+		break;
+	}
+
+	return name;
 }
 
-void PersonController::validateAge()
+int PersonController::validateAge()
 {
-	cout << "Validate Age" << endl;
+	cout << "Please Enter your age: ";
+	int age = 0;
+
+	while (true)
+	{
+		cin >> age;
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Please enter a valid input." << endl;
+			continue;
+		}
+		if (age < 0)
+		{
+			cout << "Please enter a positive value" << endl;
+			continue;
+		}
+		else if (age > 120)
+		{
+			cout << "Be fr now" << endl;
+			continue;
+		}
+		else
+		{
+			return age;
+		}
+	}
 }
 
-void PersonController::validateSuffix()
+Suffix PersonController::validateSuffix()
 {
-	cout << "Validate Suffix" << endl;
+	while (true)
+	{
+		cout << "Please enter any suffixes if applicable (f to skip)" << endl;
+		string userInput = "";
+		cin >> userInput;
+
+		if (userInput == "f" || userInput == "F")
+		{
+			return Suffix::NONE;
+		}
+		else if (userInput == "Jr" || userInput == "Jr.")
+		{
+			return Suffix::JR;
+		}
+		else if (userInput == "Sr" || userInput == "Sr.")
+		{
+			return Suffix::SR;
+		}
+		else if (userInput == "I" || userInput == "i")
+		{
+			return Suffix::I;
+		}
+		else if (userInput == "II" || userInput == "ii")
+		{
+			return Suffix::II;
+		}
+		else if (userInput == "III" || userInput == "iii")
+		{
+			return Suffix::III;
+		}
+		else if (userInput == "IV" || userInput == "iv")
+		{
+			return Suffix::IV;
+		}
+		else if (userInput == "V" || userInput == "v")
+		{
+			return Suffix::V;
+		}
+		else
+		{
+			cout << "Invalid suffix. Please try again." << endl;
+		}
+
+	}
 }
 
-void PersonController::createPerson()
+void PersonController::createPerson(string firstname, string lastname, int age, Prefix prefix, Suffix suffix)
 {
-	cout << "Create Person" << endl;
-	// Collect person info and create a new Person object
-	// Add the new Person object to the people vector
-	// Example:
-	// Person newPerson("John", "Doe", 30, Prefix::Mr, Suffix::NONE);
-	// addToArray(newPerson);
+	people.push_back(Person(firstname, lastname, age, prefix, suffix));
 }
 
-void PersonController::addToArray(Person person)
+void PersonController::createPerson(string firstname, string lastname, int age, Prefix prefix)
 {
-	people.push_back(person);
+	people.push_back(Person(firstname, lastname, age, prefix));
+}
+
+void PersonController::createPerson(string firstname, string lastname, int age, Suffix suffix)
+{
+	people.push_back(Person(firstname, lastname, age, suffix));
+}
+
+void PersonController::createPerson(string firstname, string lastname, int age)
+{
+	people.push_back(Person(firstname, lastname, age));
 }
 
 void PersonController::printPeople()
 {
-	cout << "Print People" << endl;
+	if (people.size() <= 1)
+	{
+		return;
+	}
+	for (int i = 1; i < people.size(); i++)
+	{
+		cout << people[i].toString() << olderOrYounger(i) << endl;
+	}
 }
 
-string PersonController::olderOrYounger(int index)
+string PersonController::olderOrYounger(int i)
 {
-	cout << "Older or Younger" << endl;
+	if (people[i].getAge() > people[0].getAge())
+	{
+		return " is older than you.";
+	}
+	else if (people[i].getAge() < people[0].getAge())
+	{
+		return " is younger than you.";
+	}
+	else
+	{
+		return " is the same age as you.";
+	}
 	return "";
 }

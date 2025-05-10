@@ -75,16 +75,20 @@ string Person::getSuffixString()
 	{
 	case Suffix::NONE:
 		return "";
-	case Suffix::Mr:
-		return " Mr.";
-	case Suffix::Mrs:
-		return " Mrs.";
-	case Suffix::Ms:
-		return " Ms.";
-	case Suffix::Dr:
-		return " Dr.";
-	case Suffix::Prof:
-		return " Prof.";
+	case Suffix::JR:
+		return " Jr.";
+	case Suffix::SR:
+		return " Sr.";
+	case Suffix::I:
+		return " I";
+	case Suffix::II:
+		return " II";
+	case Suffix::III:
+		return " III";
+	case Suffix::IV:
+		return " IV";
+	case Suffix::V:
+		return " V";
 	}
 }
 
@@ -103,6 +107,7 @@ Person::Person(string firstname, string lastname, int age, Prefix prefix)
 	setLastName(lastname);
 	setAge(age);
 	setPrefix(prefix);
+	setSuffix(Suffix::NONE);
 }
 
 Person::Person(string firstname, string lastname, int age, Suffix suffix)
@@ -111,6 +116,7 @@ Person::Person(string firstname, string lastname, int age, Suffix suffix)
 	setLastName(lastname);
 	setAge(age);
 	setSuffix(suffix);
+	setPrefix(Prefix::NONE);
 }
 
 Person::Person(string firstname, string lastname, int age)
@@ -118,6 +124,8 @@ Person::Person(string firstname, string lastname, int age)
 	setFirstName(firstname);
 	setLastName(lastname);
 	setAge(age);
+	setPrefix(Prefix::NONE);
+	setSuffix(Suffix::NONE);
 }
 
 string Person::toString()

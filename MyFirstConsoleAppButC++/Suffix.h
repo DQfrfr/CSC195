@@ -2,10 +2,12 @@
 
 enum class Suffix
 {
-	Mr,
-	Mrs,
-	Ms,
-	Dr,
-	Prof,
-	NONE
+    JR,
+    SR,
+    I,
+    II,
+    III,
+    IV,
+    V,
+    NONE
 };
