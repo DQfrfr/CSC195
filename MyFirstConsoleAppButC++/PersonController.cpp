@@ -105,7 +105,7 @@ Prefix PersonController::validatePrefix()
 		}
 		else
 		{
-			cout << "Invalid prefix. Please try again." << endl;
+			cout << "Invalid prefix. (Mr, Mrs, Ms, Dr, Prof)" << endl;
 		}
 	}
 }
@@ -221,7 +221,7 @@ Suffix PersonController::validateSuffix()
 		}
 		else
 		{
-			cout << "Invalid suffix. Please try again." << endl;
+			cout << "Invalid suffix. (I - V, Jr, Sr)" << endl;
 		}
 
 	}
