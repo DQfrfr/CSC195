@@ -76,29 +76,30 @@ Prefix PersonController::validatePrefix()
 	{
 		cout << "Please enter any prefixes if applicable (f to skip)" << endl;
 		cin >> userInput;
+		userInput = lower(userInput);
 
-		if (userInput == "f" || userInput == "F")
+		if (userInput == "f")
 		{
 			return Prefix::NONE;
 		}
-		else if (userInput == "Mr" || userInput == "Mr.")
+		else if (userInput == "mr" || userInput == "mr.")
 		{
 			return Prefix::Mr;
 			
 		}
-		else if (userInput == "Mrs" || userInput == "Mrs.")
+		else if (userInput == "mrs" || userInput == "mrs.")
 		{
 			return Prefix::Mrs;
 		}
-		else if (userInput == "Ms" || userInput == "Ms.")
+		else if (userInput == "ms" || userInput == "ms.")
 		{
 			return Prefix::Ms;
 		}
-		else if (userInput == "Dr" || userInput == "Dr.")
+		else if (userInput == "dr" || userInput == "dr.")
 		{
 			return Prefix::Dr;
 		}
-		else if (userInput == "Prof" || userInput == "Prof.")
+		else if (userInput == "prof" || userInput == "prof.")
 		{
 			return Prefix::Prof;
 		}
@@ -147,11 +148,11 @@ vector<string> PersonController::validateName()
 
 int PersonController::validateAge()
 {
-	cout << "Please Enter your age: ";
 	int age = 0;
 
 	while (true)
 	{
+		cout << "Please Enter your age: ";
 		cin >> age;
 		if (cin.fail())
 		{
@@ -184,36 +185,37 @@ Suffix PersonController::validateSuffix()
 		cout << "Please enter any suffixes if applicable (f to skip)" << endl;
 		string userInput = "";
 		cin >> userInput;
+		userInput = lower(userInput);
 
-		if (userInput == "f" || userInput == "F")
+		if (userInput == "f")
 		{
 			return Suffix::NONE;
 		}
-		else if (userInput == "Jr" || userInput == "Jr.")
+		else if (userInput == "jr" || userInput == "jr.")
 		{
 			return Suffix::JR;
 		}
-		else if (userInput == "Sr" || userInput == "Sr.")
+		else if (userInput == "sr" || userInput == "sr.")
 		{
 			return Suffix::SR;
 		}
-		else if (userInput == "I" || userInput == "i")
+		else if (userInput == "i")
 		{
 			return Suffix::I;
 		}
-		else if (userInput == "II" || userInput == "ii")
+		else if (userInput == "ii")
 		{
 			return Suffix::II;
 		}
-		else if (userInput == "III" || userInput == "iii")
+		else if (userInput == "iii")
 		{
 			return Suffix::III;
 		}
-		else if (userInput == "IV" || userInput == "iv")
+		else if (userInput == "iv")
 		{
 			return Suffix::IV;
 		}
-		else if (userInput == "V" || userInput == "v")
+		else if (userInput == "v")
 		{
 			return Suffix::V;
 		}
@@ -338,4 +340,13 @@ string PersonController::olderOrYounger(int i)
 		return " - Same age as you.";
 	}
 	return "";
+}
+
+string PersonController::lower(string word)
+{
+	for (int i = 0; i < word.length(); i++)
+	{
+		word[i] = tolower(word[i]);
+	}
+	return word;
 }

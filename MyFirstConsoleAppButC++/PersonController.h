@@ -35,6 +35,8 @@ class PersonController
 
     string olderOrYounger(int index);
 
+    string lower(string word);
+
 public:
 	void run();
 };
