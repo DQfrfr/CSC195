@@ -30,6 +30,8 @@ public:
 
 	string getFirstName();
 
+	string getFate();
+
 	string getLastName();
 
 	int getAge();
@@ -47,6 +49,4 @@ public:
 	Person(string firstName, string lastName, int age);
 
 	string toString();
-
-	string getFate();
 };

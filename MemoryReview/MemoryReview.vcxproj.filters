@@ -15,28 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyFirstConsoleAppButC++.cpp">
+    <ClCompile Include="MemoryReview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Person.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PersonController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Prefix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Suffix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PersonController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Person.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,7 +9,10 @@ using namespace std;
 
 void PersonController::run()
 {
+	cout << "Welcome to the Person Controller!" << endl;
+	// Seeding the random number generator at startup
 	srand(time(0));
+	// Collecting the first user's information
 	collectPersonInfo();
 
 	cout << "Hello " << people[0].getFullName() << "!" << endl;
@@ -17,7 +20,6 @@ void PersonController::run()
 	do
 	{
 		// Loop over and repaetedly ask user to add People or not until they say no
-		// Then print all people and shutdown
 		cout << "Do you want to add another person? (y/n): ";
 		string choice = "";
 		cin >> choice;
@@ -29,6 +31,7 @@ void PersonController::run()
 		}
 		else if (choice == "n" || choice == "N")
 		{
+			// Prints all people and shutsdown
 			printPeople();
 			exit(0);
 		}
@@ -276,6 +279,7 @@ void PersonController::generateFate(Person &person)
 		return;
 	}
 
+	//chatgpt generated fate strings
 	std::vector<std::string> fates = {
 	"won the lottery and vanished to Fiji.",
 	"was last seen riding a bear into the sunset.",
