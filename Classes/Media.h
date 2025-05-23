@@ -5,9 +5,8 @@ using namespace std;
 
 enum class eType
 {
-	Audio = 1,
-	Video = 2,
-	Image = 3,
+	Video = 1,
+	Image = 2
 };
 
 class Media

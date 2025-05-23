@@ -26,7 +26,7 @@ void createMedia(Database &db)
 	int type;
 	while (1)
 	{
-		cout << "Enter media type (1: Audio, 2: Video, 3: Image): ";
+		cout << "Enter media type (1: Video, 2: Image): ";
 		cin >> type;
 		if (cin.fail())
 		{
@@ -35,7 +35,7 @@ void createMedia(Database &db)
 			cout << "Invalid input. Please enter a number." << endl;
 			continue;
 		}
-		if (type < 1 || type > 3)
+		if (type < 1 || type > 2)
 		{
 			cout << "Invalid type. Please try again." << endl;
 			continue;
@@ -58,7 +58,7 @@ void displayByType(Database& db)
 	int type;
 	while (1)
 	{
-		cout << "Enter media type (1: Audio, 2: Video, 3: Image): ";
+		cout << "Enter media type (1: Video, 2: Image): ";
 		cin >> type;
 		if (cin.fail())
 		{
